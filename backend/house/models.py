@@ -13,6 +13,7 @@ class Admin(models.Model):
         """
         return True
 
+<<<<<<< HEAD
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 class User(models.Model):
@@ -31,6 +32,22 @@ class User(models.Model):
     def is_active(self):
         return True
 
+=======
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    user_email = models.EmailField(unique=True)
+    password = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 45)
+    address = models.CharField(max_length = 75)
+    pincode = models.CharField(max_length = 6)
+
+    @property
+    def is_authenticated(self):
+        """
+        Users are always authenticated. This is required for REST Framework.
+        """
+        return True
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
     
 class Rental_lot(models.Model):
     lot_id = models.AutoField(primary_key=True)

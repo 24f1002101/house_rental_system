@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .release-container {
     display: flex;
     justify-content: center;
@@ -22,4 +23,30 @@
     width: 100%;
     padding: 15px;
     font-size: 1.2rem;
+=======
+.release-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.release-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+.total-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1.5rem 0;
+    color: #2c3e50;
+}
+.release-card button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 }

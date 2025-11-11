@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* --- CSS Variables for a Consistent Theme --- */
 :root {
     --page-bg: #f8f9fa;
@@ -145,4 +146,153 @@ td {
     padding: 3rem;
     font-size: 1.1rem;
     color: var(--text-light);
+=======
+/* --- CSS Variables for a Consistent Theme --- */
+:root {
+    --page-bg: #f8f9fa;
+    --table-bg: #ffffff;
+    --header-bg: #f1f3f5;
+    --text-dark: #212529;
+    --text-light: #495057;
+    --border-color: #dee2e6;
+    --hover-bg: #e9ecef;
+    --primary-blue: #007bff;
+    --danger-red: #dc3545;
+    --font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- Entrance Animation --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Main Page Container --- */
+.table-container {
+    padding: 2rem 3rem;
+    background-color: var(--page-bg);
+    min-height: 100vh;
+    font-family: var(--font-family);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.table-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Wrapper for Table and Responsiveness --- */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Makes table scrollable on small screens */
+    background: var(--table-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+/* --- Table Styling --- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between cells */
+    color: var(--text-dark);
+}
+
+th, td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    vertical-align: middle; /* Aligns content vertically */
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Table Header */
+thead {
+    background-color: var(--header-bg);
+}
+
+th {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+}
+
+/* Table Body */
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
+}
+
+/* Zebra-striping for readability */
+tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+td {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+/* --- Action Buttons & Links --- */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger {
+    background-color: var(--danger-red);
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* --- Loading Spinner --- */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 5rem auto; /* Center the spinner */
+}
+
+/* --- Empty State Message --- */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --primary-color: #007bff;
     --primary-glow: rgba(0, 123, 255, 0.15);
@@ -247,4 +248,255 @@
     margin-top: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
+=======
+:root {
+    --primary-color: #007bff;
+    --primary-glow: rgba(0, 123, 255, 0.15);
+    --page-bg: #f8f9fa;
+    --surface-bg: #ffffff;
+    --header-bg: #f1f5f9;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-tertiary: #718096;
+    --border-color: #e2e8f0;
+    --hover-bg: #f8fafc;
+    --success-color: #28a745;
+    --success-bg: #e9f7ef;
+    --danger-color: #dc3545;
+    --danger-bg: #fbebee;
+    --warning-color: #ffc107;
+    --warning-bg: #fff8e1;
+    --info-color: #17a2b8;
+    --info-bg: #e8f6f8;
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- Entrance Animation --- */
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Main Wrapper/Background --- */
+.form-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background-color: var(--background-color);
+    background-image: linear-gradient(135deg, var(--background-color) 0%, #e9effa 100%);
+    padding: 20px;
+    font-family: var(--font-family);
+    box-sizing: border-box;
+}
+.form-container-wrapper.full-height {
+    min-height: 100vh;
+}
+/* --- The Form Card Itself --- */
+.form-container {
+    background: var(--surface-color);
+    padding: 2.5rem 3rem;
+    border-radius: 16px; /* Softer corners */
+    /* A more subtle, layered shadow for a "lifting" effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; /* A bit more space */
+    border: 1px solid #ffffff; /* A highlight border at the top */
+    animation: slideUpFadeIn 0.6s ease-out forwards;
+}
+
+/* --- Form Header & Typography --- */
+.form-container h1 {
+    text-align: center;
+    margin: 0 0 2rem 0; /* Adjusted margin */
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.form-container p {
+    text-align: center;
+    color: var(--text-medium);
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- Form Labels --- */
+.form-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-medium);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* --- Inputs, Selects, and Textareas --- */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Softer input corners */
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: #fbfdff; /* A hint of color */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* The crucial :focus state for usability */
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    /* A "glow" effect */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* --- Submit Button --- */
+.form-container button {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    /* A modern gradient */
+    background-image: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-image 0.2s ease;
+    margin-top: 1rem;
+}
+
+/* Interactive hover and active states */
+.form-container button:hover {
+    transform: translateY(-3px); /* "Lift" the button */
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.form-container button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
+}
+
+/* --- Error and Success Messages --- */
+.error-message,
+.success-message {
+    padding: 12px;
+    border-radius: 6px;
+    text-align: left;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    /* A colored left border for emphasis */
+    border-left-width: 5px;
+    border-left-style: solid;
+}
+
+.error-message {
+    color: var(--error-color);
+    background-color: var(--error-bg);
+    border-left-color: var(--error-color);
+    /* Remove the old, harsh border */
+    border: none; 
+    border-left: 5px solid var(--error-color);
+}
+
+.success-message {
+    color: var(--success-color);
+    background-color: var(--success-bg);
+    border: none;
+    border-left: 5px solid var(--success-color);
+}
+
+/* --- Helper Links --- */
+.form-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+/* --- Root Variables for an Advanced, Modern Theme --- */
+
+
+/* --- (Keep all your existing table styles from the previous step) --- */
+
+/* ------------------------------------------------ */
+/* --- NEW STYLES FOR ADMIN SUMMARY CHARTS --- */
+/* ------------------------------------------------ */
+
+.summary-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.summary-charts-grid {
+    display: grid;
+    /* Responsive Grid */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.chart-container {
+    background-color: var(--surface-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+    border: 1px solid var(--border-color);
+    animation: fadeInSlideUp 0.6s ease-out forwards; /* Using animation from your forms.css */
+}
+
+/* This is a simple animation, you might already have one */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chart-container h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.doughnut-chart-container {
+    max-height: 350px; /* Constrain height for doughnut */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header for the table section */
+.table-section-header {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 }

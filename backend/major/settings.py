@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD
+=======
+
+# Application definition
+
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+<<<<<<< HEAD
 
     # Third-party
     'corsheaders',
@@ -87,6 +94,25 @@ CORS_ALLOWED_ORIGINS = [
 
 # Application definition
 
+=======
+    'corsheaders', 
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken', # Required by dj-rest-auth
+    
+    # Allauth and dj-rest-auth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', # For Google
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'social_django',
+    'house',
+    'api'
+]
+
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,6 +197,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
+=======
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # The origin of your React app
+    "http://127.0.0.1:5173", # Also add the IP address version just in case
+]
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -208,7 +241,35 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
+<<<<<<< HEAD
 
 # allauth provider configuration for Google
+=======
+# Custom setting to tell our app to use our custom user models
+# We will use this in our custom adapter in the next step
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+SOCIALACCOUNT_ADAPTER = 'api.adapter.CustomSocialAccountAdapter'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+# allauth provider configuration for Google
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+>>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 
 # We need a custom adapter to handle creating our custom User model
