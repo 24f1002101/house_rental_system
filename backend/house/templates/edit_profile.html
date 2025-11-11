@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if messages %}
+        {% for i in messages %}
+            {{ i }}
+        {% endfor %}
+    {% endif %}
+    <form method="POST" action="{% url 'edit_profile' user.user_id %}">
+        {% csrf_token %}
+            Name:<input type="text" value="{{ user.name }}" name="name">
+            Email:<input type="text"  value="{{ user.user_email }}" name="email">
+            Address:<input type="text" value="{{ user.address }}" name="address">
+            Pinoce : <input type="number" value="{{ user.pincode }}" name="pin">
+        <input type="submit" value="change" name="action">
+        <input type="submit" value="dont"  name="action">
+    </form>
+{% endblock %}

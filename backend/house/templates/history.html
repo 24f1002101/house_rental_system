@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+        {% if history %}
+            <table border="1">
+                <tr>
+                <td>Lot Id</td>
+                <td>Spot Id</td>
+                <td>Location</td>
+                <td>Address</td>
+                <td>Phone Number</td>
+                <td>Booked Time</td>
+                <td>Released Time</td>
+                <td>Action</td>
+                </tr>
+                {% for i in history %}
+                    <tr>
+                        <td>{{ i.lot.lot_id }}</td>
+                        <td>{{ i.spot.spot_id }}</td>
+                        <td>{{ i.lot.location }}</td>
+                        <td>{{ i.spot.address }}</td>
+                        <td>{{ i.phone_number }}</td>
+                        <td>{{ i.registered_time }}</td>
+                        {% if i.leaving_time %}
+                        <td>{{ i.leaving_time }}</td>
+                        {% else %}
+                        <td>None</td>
+                        {% endif %}
+                        {% if i.leaving_time == None %}
+                        <td><a href="{% url 'release_spot' lot_id=i.lot.lot_id spot_id=i.spot.spot_id user_id=i.user.user_id  %}">Release</a></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+{% endblock %}

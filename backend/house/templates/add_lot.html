@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% block title %}Add Rental Lot{% endblock %}
+
+{% block content %}
+<style>
+  /* Container + page */
+  .page-wrap {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    background: linear-gradient(180deg, #f6fbff 0%, #ffffff 100%);
+  }
+
+  /* Card */
+  .card {
+    width: 100%;
+    max-width: 700px;
+    background: #ffffff;
+    border: 1px solid #e6f0ff;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(13, 71, 161, 0.06);
+    padding: 28px;
+    box-sizing: border-box;
+  }
+
+  .card h1 {
+    margin: 0 0 14px;
+    font-size: 22px;
+    color: #044f9f; /* deep blue */
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.2px;
+  }
+
+  .intro {
+    color: #274a78;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Messages */
+  .messages {
+    margin-bottom: 18px;
+  }
+  .msg {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    border-left: 4px solid transparent;
+  }
+  .msg.info { background: #eef6ff; color: #0b4ea2; border-left-color: #72a7ff; }
+  .msg.success { background: #eefdf3; color: #116a2b; border-left-color: #84e38b; }
+  .msg.error { background: #fff4f6; color: #a61b2b; border-left-color: #ff8899; }
+
+  /* Form grid */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: #254766;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #dbe9ff;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #12233b;
+    box-sizing: border-box;
+    transition: box-shadow .15s, border-color .15s;
+    background: #fff;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    outline: none;
+    border-color: #6ba6ff;
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.12);
+  }
+
+  .hint {
+    font-size: 12px;
+    color: #6781a7;
+    margin-top: 6px;
+  }
+
+  .actions {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0;
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    background: #0b63d6;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(11,99,214,0.18);
+  }
+  .btn-primary:hover { background: #0855b6; }
+
+  .btn-ghost {
+    background: #ffffff;
+    color: #0b63d6;
+    border: 1px solid #dbe9ff;
+  }
+  .btn-ghost:hover { background: #f7fbff; }
+
+  .left-note { color: #3b6aa0; font-size: 13px; }
+
+  /* small footer link */
+  .back-link {
+    color: #0b63d6;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+</style>
+
+<div class="page-wrap">
+  <div class="card" role="main" aria-labelledby="add-lot-heading">
+    <h1 id="add-lot-heading">Add New Rental Lot</h1>
+    <p class="intro">Create a new rental lot so customers can reserve spots. All fields are required.</p>
+
+    <!-- Messages -->
+    {% if messages %}
+      <div class="messages" role="status" aria-live="polite">
+        {% for message in messages %}
+          <div class="msg {% if 'error' in message.tags %}error{% elif 'success' in message.tags %}success{% else %}info{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'adding_lot' %}" novalidate>
+      {% csrf_token %}
+
+      <div class="form-grid">
+        <div>
+          <label for="location">Location</label>
+          <input id="location" name="location" type="text" placeholder="City, Area (e.g. Tirupati, Kurnool)"
+                 value="{{ location|default:'' }}" required autocomplete="street-address">
+          <div class="hint">Example format: <em>Tirupati, K.T. Road</em></div>
+        </div>
+
+        <div>
+          <label for="pin">Pincode</label>
+          <!-- Use text + pattern to allow leading zeros if needed -->
+          <input id="pin" name="pin" type="text" inputmode="numeric" pattern="\d{6}"
+                 placeholder="6-digit pincode" value="{{ pin|default:'' }}" required>
+          <div class="hint">Enter 6 digits (e.g. 517501)</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="left-note">Make sure location &amp; pincode are correct.</div>
+
+        <div style="margin-left:auto; display:flex; gap:12px;">
+          <a class="btn btn-ghost" href="{% url 'admin_homepage' %}">Back to Dashboard</a>
+          <button type="submit" class="btn btn-primary">Create Lot</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // small client-side helper: show browser validation message for pincode pattern
+  (function () {
+    const form = document.currentScript ? document.currentScript.ownerDocument.querySelector('form') : document.querySelector('form');
+    const pin = document.getElementById('pin');
+
+    if (!form || !pin) return;
+
+    form.addEventListener('submit', function (ev) {
+      // if browser pattern mismatch, let browser show message
+      if (!pin.checkValidity()) {
+        // show custom message if you like
+        pin.setCustomValidity('Pincode must be exactly 6 digits');
+        pin.reportValidity();
+        // reset validity so subsequent submits re-check
+        setTimeout(() => pin.setCustomValidity(''), 2000);
+        ev.preventDefault();
+      }
+    });
+  })();
+</script>
+{% endblock %}

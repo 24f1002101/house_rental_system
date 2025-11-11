@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if messages %}
+        {% for i in messages %}
+            <p class="message">{{ i }}</p>
+        {% endfor %}
+    {% endif %}
+    <form id="bookingForm" method="POST" action="{% url 'book_spot' lot_id=lot_id spot_id=spot_id user_id=user_id %}">
+        {% csrf_token %}
+
+        <label>Lot Id:</label>
+        <input type="text" value="{{ lot_id }}" disabled>
+        <input type="hidden" name="lot_id" value="{{ lot_id }}">
+
+        <label>Spot Id:</label>
+        <input type="text" value="{{ spot_id }}" disabled>
+        <input type="hidden" name="spot_id" value="{{ spot_id }}">
+
+        <label>User Id:</label>
+        <input type="text" value="{{ user_id }}" disabled>
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+
+        <label>Phone No:</label>
+        <input type="number" name="phone" id="phone" required>
+
+        <div class="button-group">
+            <button type="submit" name="action" value="reserve">Reserve</button>
+            <button type="submit" name="action" value="cancel">Cancel</button>
+        </div>
+    </form>
+
+    <script>
+        // Example: validate phone number before submitting
+        document.getElementById("bookingForm").addEventListener("submit", function(e) {
+            const phone = document.getElementById("phone").value;
+
+            if (phone.length < 10) {
+                e.preventDefault(); // stop form submit
+                alert("Please enter a valid phone number (at least 10 digits).");
+            }
+            if (phone.length < 10) {
+                e.preventDefault(); // stop form submit
+                alert("Please enter a valid phone number (atmost 10 digits).");
+            }
+        });
+    </script>
+
+    <style>
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .message {
+            text-align: center;
+            padding: 10px;
+            background: #e7f3ff;
+            border: 1px solid #007BFF;
+            border-radius: 6px;
+            margin: 10px auto;
+            max-width: 400px;
+        }
+    </style>
+{% endblock %}

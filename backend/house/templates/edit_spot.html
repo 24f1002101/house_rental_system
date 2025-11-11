@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if messages %}
+        {% for i in messages %}
+            {{ i }}
+        {% endfor %}
+    {% endif %}
+    <form method="POST" action="{% url 'edit_spot' lot.lot_id spot.spot_id %}">
+        {% csrf_token %}
+        location:<input type="text" name="location" value="{{ lot.location }}" disabled>
+        pincode:<input type="number" name="pincode" value="{{ lot.pincode }}" disabled>
+        address:<input type="text" name="address" >
+        rental_type:<input type="text" name="room" >
+        price:<input type="text" name="price" >
+        <input type="submit" value="change" name="action">
+        <input type="submit" value="dont" name="action">
+    </form>
+{% endblock %}

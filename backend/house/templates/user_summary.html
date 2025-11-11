@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if result %} 
+        <table border="1">
+            <tr>
+                <td>S.NO</td>
+                <td>Location</td>
+                <td>Pincode</td>
+                <td>Address</td>  
+                <td>Room Type</td>
+                <td>Booked Time</td> 
+                <td>Leaving Time</td>     
+                <td>Days Spent</td>
+                <td>Amount Spent</td>
+                <td>Phone Number</td>
+            </tr>
+        {% for i in result %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.0.lot.location }}</td>
+                <td>{{ i.0.lot.pincode }}</td>
+                <td>{{ i.0.spot.address }}</td>
+                <td>{{ i.0.spot.type }}</td>
+                <td>{{ i.0.registered_time }}</td>
+                <td>{{ i.0.leaving_time }}</td>
+                <td>{{ i.2 }}</td>
+                <td>{{ i.1 }}</td>
+                <td>{{ i.0.phone_number }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

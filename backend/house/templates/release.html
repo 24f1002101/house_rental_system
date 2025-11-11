@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    <form method="POST" action="{% url 'release_spot' history.lot.lot_id history.spot.spot_id history.user.user_id %}">
+        {% csrf_token %}
+        Lot Id:<input type="text" value="{{ history.lot_id }}" disabled>
+        Spot Id:<input type="text" value="{{ history.spot_id }}" disabled>
+        Phone Number:<input type="text" value="{{ history.phone_number }}" disabled>
+        Booked Time : <input type="text" value="{{ history.registered_time }}" disabled>
+        Leaving Time : <input type="text" value="{{ present_time }}" disabled>
+        Total Cost : <input type="text" value="{{ total }}" disabled>
+        <input type="submit" value="Release" name="action">
+        <input type="submit" value="Cancel" name="action">
+{% endblock %}
