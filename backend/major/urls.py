@@ -8,10 +8,4 @@ urlpatterns = [
     path('', include('api.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', custom_token_refresh, name='custom_token_refresh'),
-<<<<<<< HEAD
-  
-=======
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
->>>>>>> 52757e176c76c3d46b6dc8ee6f8034bff86425a2
 ]
