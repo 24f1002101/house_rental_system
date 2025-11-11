@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+        <form method="POST" action="{%  url 'view_spot' booked.lot.lot_id booked.spot.spot_id %}">
+            {% csrf_token %}
+            Lot Id:<input type="text" value="{{ booked.lot.lot_id }}" disabled>
+            Customer Id:<input type="text" value="{{ booked.user.user_id }}" disabled>
+            User Phone No:<input type="text" value="{{ booked.phone_number }}" disabled>
+            Booked Time : <input type="text" value="{{ booked.registered_time }}" disabled>
+            Cost Incurring:<input type="text" value="{{ total }}" disabled>
+            <input type="submit" value="close" name="action">
+        </form>
+
+{% endblock %}

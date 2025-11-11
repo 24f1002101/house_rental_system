@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if result %}
+        <table border="1">
+            <tr>
+                <td>Lot ID</td>
+                <td>Location</td>
+                <td>Pincode</td>
+                <td>Total Spots</td>
+                <td>No.of Occupied Spots</td>
+                <td>No.of Available Spots</td>
+                <td>No.of Persons Utilized</td>
+                <td>No.of Persons Utilizing</td>
+                <td>No.of Days Spent</td>
+                <td>Total Cost Generated</td>
+            </tr>
+        {% for i in result %}
+            <tr>
+                <td>{{ i.0.lot_id }}</td>
+                <td>{{ i.0.location }}</td>
+                <td>{{ i.0.pincode }}</td>
+                <td>{{ i.1 }}</td>
+                <td>{{ i.3 }}</td>
+                <td>{{ i.2 }}</td>
+                <td>{{ i.7 }}</td>
+                <td>{{ i.6 }}</td>
+                <td>{{ i.4 }}</td>
+                <td>{{ i.5 }}</td>         
+            </tr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

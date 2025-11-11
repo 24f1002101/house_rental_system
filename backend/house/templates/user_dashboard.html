@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <title>User Dashboard</title>
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="mb-4">
+            {% for message in messages %}
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        Welcome {{ user.name }} | <a href="#">Home</a> | <a href="{% url 'user_history' user.user_id %}"> History</a> | <a href="{% url 'user_summary' user.user_id %}">Summary</a>| <a href="{% url 'user_logout' user.user_id %}">Logout</a> | <a  href="{% url 'edit_profile' user.user_id %}">Edit Profile</a>
+        {% if result %}
+            <table border = "1">
+                <tr>
+                <td>S.NO</td>
+                <td>Lot Location</td>
+                <td>Pincode</td>
+                <td>Address</td>
+                <td>Type</td>
+                <td>Price</td>
+                <td>Action</td>
+                </tr>
+            {% for i in result %}
+                {% for j in i.1 %}
+                <tr>
+                    <td>{{ forloop.parentloop.counter0|add:forloop.counter }}</td>
+                    <td>{{ i.0.location }}</td>
+                    <td>{{ i.0.pincode }}</td>
+                    <td>{{ j.address }}</td>
+                    <td>{{ j.type }}</td>
+                    <td>{{ j.price }}</td>             
+                    <td><a href="{% url 'book_spot' lot_id=i.0.lot_id spot_id=j.spot_id user_id=user.user_id %}">Book</a></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </body>
+</html>
