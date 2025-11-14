@@ -1,5 +1,16 @@
 from django.db import models
 from django.utils import timezone
+
+
+class ChatbotQuery(models.Model):
+    userID = models.IntegerField(null=True, blank=True)   
+    queryText = models.TextField()
+    responseText = models.TextField()
+    queryDate = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Query {self.id}"
+
 class Admin(models.Model):
     admin_id = models.AutoField(primary_key=True)
     admin_name = models.CharField(max_length=45)
@@ -12,6 +23,7 @@ class Admin(models.Model):
         Admins are always authenticated. This is required for REST Framework.
         """
         return True
+
 
 
 class User(models.Model):

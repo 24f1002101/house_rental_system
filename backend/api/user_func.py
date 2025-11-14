@@ -2,6 +2,35 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from house.models import *
+from house.models import ChatbotQuery
+from .serializers import ChatbotQuerySerializer
+from .gemini_api import generate_response
+
+@api_view(["POST"])
+def add_query(request):
+    try:
+        query = request.data.get("query")
+        print("Received query:", query)
+
+        # CALL GEMINI API
+        response_text = generate_response(query)
+
+        chatbot_entry = ChatbotQuery(
+            queryText=query,
+            responseText=response_text
+        )
+        chatbot_entry.save()
+
+        serializer = ChatbotQuerySerializer(chatbot_entry)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        print("Chatbot error:", e)
+        return Response(
+            {"message": "Failed to generate response", "error": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 @api_view(['GET', 'PUT'])
 def user_profile(request, user_id):

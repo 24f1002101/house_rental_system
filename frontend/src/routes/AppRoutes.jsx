@@ -27,7 +27,7 @@ import BookSpot from '../pages/user/BookSpot.jsx';
 import ReleaseSpot from '../pages/user/ReleaseSpot.jsx';
 import UserHistory from '../pages/user/UserHistory.jsx';
 import UserSummary from '../pages/user/UserSummary.jsx';
-
+import Chatbot from '../components/Chatbot.jsx';
 const NotFound = () => <h1>404 - Page Not Found</h1>;
 
 const AppRoutes = () => {
@@ -67,6 +67,7 @@ const AppRoutes = () => {
           <Route path="/user/release_spot/:lot_id/:spot_id/:user_id" element={<ReleaseSpot />} />
           <Route path="/user/:user_id/history" element={<UserHistory />} />
           <Route path="/user/:user_id/summary" element={<UserSummary />} />
+          <Route path="/user/:user_id/chatbot" element={<Chatbot />} />
         </Route>
       </Route>
       

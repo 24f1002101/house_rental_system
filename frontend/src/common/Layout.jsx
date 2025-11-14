@@ -1,31 +1,30 @@
 // src/common/Layout.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
+import ChatbotModal from "../components/Chatbot";  
 import './Layout.css';
 
 const Layout = () => {
+  const [showChatbot, setShowChatbot] = useState(false);
   const navigate = useNavigate();
+
   const userId = localStorage.getItem('userId');
   const adminId = localStorage.getItem('adminId');
 
   const handleLogout = () => {
-    // Clear all auth-related items from localStorage
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('adminId');
+    localStorage.clear();
     navigate('/');
   };
 
   return (
     <div className="layout-container">
       <header className="main-header">
-       <div className="logo">
+        <div className="logo">
           <Link to={userId ? `/user/${userId}/homepage` : (adminId ? '/admin/homepage' : '/')}>
             Rental Parking
           </Link>
         </div>
+
         <nav>
           {userId && (
             <>
@@ -35,6 +34,7 @@ const Layout = () => {
               <Link to={`/user/${userId}/summary`}>My Summary</Link>
             </>
           )}
+
           {adminId && (
             <>
               <Link to="/admin/homepage">Dashboard</Link>
@@ -43,14 +43,33 @@ const Layout = () => {
               <Link to="/admin/profile">Profile</Link>
             </>
           )}
+
           {(userId || adminId) && (
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <button onClick={handleLogout} className="logout-button">
+              Logout
+            </button>
           )}
         </nav>
       </header>
+
       <main className="content-area">
-        <Outlet /> 
+        <Outlet />
       </main>
+
+      {/* FLOATING CHATBOT ICON */}
+      {userId && (
+        <button 
+          className="floating-chatbot-btn"
+          onClick={() => setShowChatbot(true)}
+        >
+          💬
+        </button>
+      )}
+
+      {/* Chatbot Modal Component */}
+      {showChatbot && (
+        <ChatbotModal close={() => setShowChatbot(false)} />
+      )}
     </div>
   );
 };

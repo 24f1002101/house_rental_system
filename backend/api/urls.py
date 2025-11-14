@@ -4,12 +4,14 @@ from django.urls import path
 from . import auth
 from . import admin_func
 from . import user_func
+
 #from . import accounts
 urlpatterns =[
     path('api/role', auth.role, name='role'),
     path('api/user_login', auth.user_index, name='user_index'), # Renamed for clarity
     path('api/user_registration', auth.user_register, name='registration'),
     path('api/admin_login', auth.index, name='index'),
+    path("api/chatbot/", user_func.add_query),
     path('api/admin_homepage', auth.admin_homepage, name='admin_homepage'),
     path('api/user_homepage/<int:user_id>', auth.user_homepage, name='user_homepage'),
     path('api/registered_users', admin_func.registered_users, name='registered_users'),

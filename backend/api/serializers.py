@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from house.models import Admin, User, Rental_lot, Rental_spot, Registered_spot
+from house.models import Admin, User, Rental_lot, Rental_spot, Registered_spot, ChatbotQuery
 from django.utils import timezone
 
 class AdminSerializer(serializers.ModelSerializer):
@@ -11,6 +11,12 @@ class AdminSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = '__all__'
+
+
+class ChatbotQuerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatbotQuery
         fields = '__all__'
 
 

@@ -5,3 +5,4 @@ dj-rest-auth
 django-allauth
 social-auth-app-django
 django-cors-headers
+google-generativeai
